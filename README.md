@@ -53,49 +53,47 @@
 ![登录](ARW-net/document/%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.jpg)
    注册流程：
 
-   ![注册流程](http://chat.aerwen.net/dev-api//demo/20221006/E1F0C02868B80C90.gif)
+   ![注册流程](ARW-net/document/image/%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B.gif)
 
 2. 个人中心：修改个人信息。
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/571DD0F61CDA4A1F.jpg)
+   ![输入图片说明](ARW-net/document/image/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83.jpg)
 
 3. 添加好友/群聊：通过用户名或群名查找。
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/07E1DAB722B6AF59.jpg)
-
+   
+![输入图片说明](ARW-net/document/image/%E8%81%8A%E5%A4%A9%E9%A6%96%E9%A1%B5.jpg)
    好友申请：
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/43D09F04486C3611.jpg)
+   ![输入图片说明](ARW-net/document/image/%E5%A5%BD%E5%8F%8B%E7%94%B3%E8%AF%B7.jpg)
 
 4. 好友简介：查看好友信息,可以修改好友备注。
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/0331C0145A6142ED.jpg)
+   ![输入图片说明](ARW-net/document/image/%E5%A5%BD%E5%8F%8B%E7%AE%80%E4%BB%8B.jpg)
 
 5. 聊天：与好友实时聊天或者留言。
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/47FA28F82C08E7A7.jpg)
+   ![输入图片说明](ARW-net/document/image/%E8%81%8A%E5%A4%A9%E6%88%AA%E5%9B%BE.jpg)
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/1126A7957679CDDB.gif)
+   ![输入图片说明](ARW-net/document/image/%E5%AE%9E%E6%97%B6%E8%81%8A%E5%A4%A9%E6%BC%94%E7%A4%BA.gif)
 
    上传图片：
 
-   ![](http://chat.aerwen.net/dev-api//uploads/20221006/9993196E456C7AEE.gif)
-
+   ![输入图片说明](ARW-net/document/image/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87.gif)
    群聊：
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/928D9CF4B92CEDB5.gif)
+   ![输入图片说明](ARW-net/document/image/%E7%BE%A4%E8%81%8A%E6%BC%94%E7%A4%BA.gif)
 
 6. emjoi表情包：支持发送emjoi表情。
 
    [组件github地址](https://github.com/ADKcodeXD/Vue3-Emoji)
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/A7A24DAC5D504955.gif)
-
+   ![输入图片说明](ARW-net/document/image/emjoi%E8%A1%A8%E6%83%85%E5%8C%85.gif)
 7. 配套后台管理 (附源码)
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/46AC0DC4C3DFE9FD.jpg)
+   ![输入图片说明](ARW-net/document/image/%E5%90%8E%E5%8F%B0%E9%A6%96%E9%A1%B5.jpg)
 
-![](http://chat.aerwen.net/dev-api//demo/20221006/C9E4F43B3CA85215.jpg)
+![输入图片说明](ARW-net/document/image/%E5%90%8E%E5%8F%B0%E8%B4%A6%E6%88%B7%E7%AE%A1%E7%90%86.jpg)
 
 
 
@@ -131,5 +129,5 @@ npm run dev
 
 
 
-详细技术要点：
+详细技术要点：https://blog.csdn.net/weixin_60435181/article/details/127203154?spm=1001.2014.3001.5502
 
