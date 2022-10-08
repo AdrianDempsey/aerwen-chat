@@ -50,7 +50,8 @@
 
 1. 登录/注册
 
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/0D2F813792477BD3.jpg)
+   
+![输入图片说明](http://chat.aerwen.net/dev-api//demo/20221006/0D2F813792477BD3.jpg)
 
    注册流程：
 
