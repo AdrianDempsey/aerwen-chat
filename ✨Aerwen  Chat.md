@@ -49,9 +49,8 @@
 ## 🍕内置功能
 
 1. 登录/注册
-
-   ![](http://chat.aerwen.net/dev-api//demo/20221006/0D2F813792477BD3.jpg)
-
+    
+![登录](ARW-net/document/%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.jpg)
    注册流程：
 
    ![注册流程](http://chat.aerwen.net/dev-api//demo/20221006/E1F0C02868B80C90.gif)
