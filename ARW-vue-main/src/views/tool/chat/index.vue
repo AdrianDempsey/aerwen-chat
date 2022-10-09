@@ -42,7 +42,7 @@ export default {
   methods: {
     init() {
       this.connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:8887/chathub", {})
+        .withUrl("http://chatvue.aerwen.net/msghub", {})
         .configureLogging(signalR.LogLevel.Error)
         .build();
       this.connection.on("ReceiveMessage", data => {

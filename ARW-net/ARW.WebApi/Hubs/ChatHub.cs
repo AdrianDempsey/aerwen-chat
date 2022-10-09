@@ -102,6 +102,7 @@ namespace ARW.Admin.WebApi.Hubs
                 throw new Exception("系统异常连接失败");
             }
 
+            // 修改用户登录状态
             _ChatLoginService.Update(s => s.ChatUserName == username,
                f => new ChatUser
                {
@@ -120,27 +121,6 @@ namespace ARW.Admin.WebApi.Hubs
         #endregion
 
         /// <summary>
-        /// 群聊发送信息
-        /// </summary>
-        /// <param name="connectId"></param>
-        /// <param name="userName"></param>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        //[HubMethodName("SendMessage")]
-        //public async Task SendMessage(string connectId, string userName, string message)
-        //{
-        //    Console.WriteLine($"{connectId},message={message}");
-        //    bool isDemoMode = AppSettings.GetAppConfig("DemoMode", true);
-        //    if (isDemoMode)
-        //    {
-        //        await Clients.Caller.SendAsync("receiveChat", new { userName, message = "当前环境为演示环境，消息不会发送给对方" });
-        //        return;
-        //    }
-        //    await Clients.Client(connectId).SendAsync("receiveChat", new { userName, message });
-        //}
-
-
-        /// <summary>
         /// 好友发送信息
         /// </summary>
         /// <param name="user"></param>
@@ -154,6 +134,8 @@ namespace ARW.Admin.WebApi.Hubs
             }
 
             // 服务端主动调用客户端的方法
+            // 向指定用户(connectId)发送指定消息
+            // 监听接受方法("ReceiveMessage")来获取消息 -> ( new { sender, receiver, message } )
             await Clients.Client(connectId).SendAsync("ReceiveMessage", new { sender, receiver, message });
             await Clients.Client(selfConnectionId).SendAsync("ReceiveMessage", new { sender, receiver, message });
         }
