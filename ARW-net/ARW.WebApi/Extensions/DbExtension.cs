@@ -96,7 +96,7 @@ namespace ARW.Admin.WebApi.Extensions
         public static void InitDb(this IServiceProvider service)
         {
             var db = DbScoped.SugarScope;
-            new MySql.Data.MySqlClient.MySqlConnection("server=47.242.159.172;Database=chat;Uid=chat;Pwd=chat;SslMode=none;CharSet=utf8mb4;AllowLoadLocalInfile=true;").Open();
+            new MySql.Data.MySqlClient.MySqlConnection("server=localhost;Database=chat;Uid=root;Pwd=root;SslMode=none;CharSet=utf8mb4;AllowLoadLocalInfile=true;").Open();
             //db.DbMaintenance.CreateDatabase();
             //db.CodeFirst.
 

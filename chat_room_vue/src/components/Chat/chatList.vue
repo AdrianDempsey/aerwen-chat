@@ -30,13 +30,11 @@
                         <img class="chat_img" :src=userStore.userinfo.chatUserImg alt="">
                     </div>
                 </div>
-
             </div>
 
-            <!-- 聊天列表 -->
+            <!-- 在线聊天列表 -->
             <div v-for="(item,index) in msgList" :key="index">
 
-                <!-- <div v-if="item.receiver == chatStore.chatUser.friendGuId && item.sender == userStore.userinfo.chatUserGuId"> -->
                 <div v-if="item.sender == chatStore.chatUser.friendGuId && item.receiver == userStore.userinfo.chatUserGuId"
                     class="chat_other_box">
                     <div class="chat_img_box">
@@ -45,6 +43,7 @@
                     </div>
                     <div v-html="item.message" class="message_box" ></div>
                 </div>
+                
                 <div v-if="item.sender == userStore.userinfo.chatUserGuId && item.receiver == chatStore.chatUser.friendGuId"
                     class="chat_self_box">
                     <div v-html="item.message" class="message_self_box"></div>
