@@ -39,7 +39,7 @@
                     <div class="agreetxt" v-if="item.isAgree == false">已拒绝</div>
                 </div>
 
-                <el-dialog v-model="isAdd" title="填写备注" width="20%" @close="isAdd = false" :modal="false">
+                <el-dialog v-model="isAdd" title="填写备注" :width=tcWidth @close="isAdd = false" :modal="false">
                     <el-input v-model="addFriendData.FriendsNote"></el-input>
                     <template #footer>
                         <span class="dialog-footer">
@@ -49,7 +49,7 @@
                     </template>
                 </el-dialog>
 
-                <el-dialog v-model="isRefuse" title="填写回复" width="20%" @close="isRefuse = false">
+                <el-dialog v-model="isRefuse" title="填写回复" :width=tcWidth @close="isRefuse = false">
                     <el-input v-model="addFriendData.Reply"></el-input>
                     <template #footer>
                         <span class="dialog-footer">
@@ -162,6 +162,30 @@ function back() {
     switchStore.isPersonal = false
     switchStore.isFriends = false
 }
+
+
+let tcWidth = ref()
+createMediaList({
+    1100(ctx) {
+        if(ctx.matches){
+            tcWidth.value = "100%"
+        }
+        else{
+            tcWidth.value = "50%"
+        }
+    },
+})
+
+function createMediaList(opt) {
+        for (let optKey in opt) {
+            let mediaCtx = window !== undefined ? window.matchMedia(`(max-width: ${optKey}px)`) : global.matchMedia(`(max-width: ${optKey}px)`)
+            if (mediaCtx?.matches) {
+                opt[optKey](mediaCtx)
+            }
+            mediaCtx.addListener(opt[optKey])
+        }
+}
+
 </script>
 
 <style lang="scss" scoped>

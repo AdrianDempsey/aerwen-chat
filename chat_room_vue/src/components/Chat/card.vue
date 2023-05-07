@@ -1,13 +1,12 @@
 <template>
-<body>
+  <body>
     <!-- 加载动画 -->
     <div class="shell" :class="{ shell2: isClick }" @click="clickCard">
-        <div class="card">
-            <h1><span class="word">Aerwen</span>Chat</h1>
-        </div>
+      <div class="card">
+        <h1><span class="word">Aerwen</span>Chat</h1>
+      </div>
     </div>
-</body>
-
+  </body>
 </template>
 
 <script setup>
@@ -20,8 +19,8 @@ let isClick = ref(false);
 function clickCard() {
   isClick.value = true
   setTimeout(() => {
-      router.push({
-        path:"/login"
+    router.push({
+      path: "/login"
     })
   }, 500);
 
@@ -29,17 +28,19 @@ function clickCard() {
 </script>
 
 <style lang="scss" scoped>
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-body{
-  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
- background-blend-mode: multiply,multiply;
-   display: flex;
+
+body {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+  background-blend-mode: multiply, multiply;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 98.2vh;
+  overflow: hidden;
 }
 
 .shell {
@@ -48,7 +49,7 @@ body{
   transform-style: preserve-3d;
   display: flex;
   cursor: pointer;
-  animation: animateRotate 1.8s ;
+  animation: animateRotate 1.8s;
 }
 
 @keyframes animateRotate {
@@ -56,6 +57,7 @@ body{
     transform: rotateY(0deg);
 
   }
+
   100% {
     transform: rotateY(360deg);
 
@@ -121,5 +123,18 @@ h1 {
 .shell>div,
 .shell::before {
   transition: .3s;
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 350px !important;
+    height: 250px !important;
+  }
+
+  .shell::before {
+    width: 350px !important;
+    height: 250px !important;
+    margin-left: 25px !important;
+  }
 }
 </style>

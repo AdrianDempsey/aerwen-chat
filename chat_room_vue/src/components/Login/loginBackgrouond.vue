@@ -1,12 +1,12 @@
 <template>
-<div>
+  <div>
     <!-- 登录背景 -->
     <div class="a">
-        <div class="b"><span>
-            AERWEN/CHAT
+      <div class="b"><span>
+          AERWEN/CHAT
         </span></div>
     </div>
-</div>
+  </div>
 </template>
 
 <script setup>
@@ -14,8 +14,6 @@
 </script>
 
 <style scoped>
-
-
 .a {
   top: 180px;
   width: 700px;
@@ -140,6 +138,23 @@
   100% {
     clip-path: inset(80% 0px 0px 0px);
     transform: translate(0px, 0px)
+  }
+}
+
+@media (max-width: 480px) {
+  .a {
+    width: 300px !important;
+    margin-left: 20px !important;
+  }
+
+  .a::after {
+    width: 300px !important;
+  }
+
+  .b,
+  .b::before {
+    font-size: 25px !important;
+    letter-spacing: 5px !important;
   }
 }
 </style>

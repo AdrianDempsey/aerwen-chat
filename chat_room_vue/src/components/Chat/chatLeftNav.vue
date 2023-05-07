@@ -1,36 +1,36 @@
 <template>
-    <nav class="shell">
-        <ul class="buttons">
-            <li class="li">
+    <nav class="shell-header">
+        <div class="buttons" style="margin: 0px">
+            <div class="shell-header-box">
                 <div class="head" @click="clickPersonal">
-                    <img :src="userinfo.chatUserImg"  alt="">
-                    <div style="text-align: center;" v-if="userinfo.chatUserNickName != null">{{
-                    userinfo.chatUserNickName.length >= 4
-                    ? userinfo.chatUserNickName.substr(0, 3) + "..."
-                    : userinfo.chatUserNickName
+                    <img :src="userinfo.chatUserImg" alt="">
+                    <div class="head-tetx" style="text-align: center;" v-if="userinfo.chatUserNickName != null">{{
+                        userinfo.chatUserNickName.length >= 4
+                        ? userinfo.chatUserNickName.substr(0, 3) + "..."
+                        : userinfo.chatUserNickName
                     }}</div>
                     <div style="text-align: center;" v-else>{{
-                    userinfo.chatUserName.length >= 4
-                    ? userinfo.chatUserName.substr(0, 3) + "..."
-                    : userinfo.chatUserName
+                        userinfo.chatUserName.length >= 4
+                        ? userinfo.chatUserName.substr(0, 3) + "..."
+                        : userinfo.chatUserName
                     }}</div>
                 </div>
-            </li>
+            </div>
 
-            <li class="li" @click="clickFriends(),handleRead()">
+            <div class="shell-header-box tool-box" @click="clickFriends(), handleRead()">
                 <div class="tool">
-                    <div v-if=" isReadValue == false" class="point"></div>
+                    <div v-if="isReadValue == false" class="point"></div>
                     <img src="../../assets/img/addfirend.png" alt="">
                 </div>
-            </li>
+            </div>
 
-            <li class="li" @click="loginout">
+            <div class="shell-header-box" @click="loginout">
                 <div class="set">
                     <img src="../../assets/img/loginout.png" alt="">
                 </div>
-            </li>
+            </div>
 
-        </ul>
+        </div>
     </nav>
 </template>
 
@@ -128,17 +128,28 @@ function loginout() {
 </script>
 
 <style>
-.shell {
+.shell-header {
     position: relative;
     width: 90px;
     height: 700px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: #8a98c9;
+
 }
 
 .buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     color: #fff;
+}
+
+ul {
+    margin: 0 !important;
 }
 
 .head {
@@ -156,9 +167,9 @@ function loginout() {
 }
 
 .tool {
-    position: absolute;
-    left: 33%;
-    top: 25%;
+    /* position: absolute; */
+    /* left: 33%; */
+    /* top: 25%; */
 }
 
 .tool img,
@@ -184,15 +195,46 @@ function loginout() {
 }
 
 .set {
-    position: absolute;
-    left: 30%;
-    bottom: 2%;
+    /* position: absolute; */
+    /* left: 30%; */
+    /* bottom: 2%; */
 }
 
-.li {
+.shell-header-box {
     letter-spacing: 2px;
     font: 600 14px '';
     transition: .3s;
     list-style: none;
+}
+
+@media (max-width: 1100px) {
+    .shell-header {
+        width: 100% !important;
+        height: 72px !important;
+        border-radius: 0 !important;
+    }
+
+    .buttons {
+        justify-content: space-between;
+        flex-direction: row !important;
+    }
+
+    .tool-box {
+        display: none !important;
+    }
+
+    .set {
+        margin-right: 30px;
+    }
+
+    .head {
+        display: flex;
+        align-items: center;
+        top: 10%;
+        left: 5%;
+    }
+    .head-tetx{
+        margin-left: 10px;
+    }
 }
 </style>

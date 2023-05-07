@@ -10,7 +10,7 @@
 
                 <el-upload class="avatar-uploader" :action="uploadImgUrl" :show-file-list="false"
                     :on-success="handleImgSuccess" :data="{
-                     chat_img: msg,
+                        chat_img: msg,
                     }">
                     <img src="../../assets/img/pic.png" alt="">
                 </el-upload>
@@ -35,14 +35,13 @@
                 disabled></textarea>
         </div>
         <div class="btn_box">
-            <button v-if="switchStore.isChat || switchStore.isGroupChat" class="close"
-                @click="handleColse">关闭(c)</button>
+            <button v-if="switchStore.isChat || switchStore.isGroupChat" class="close" @click="handleColse">关闭(c)</button>
             <button v-if="switchStore.isChat" @click="handelSend">发送(Enter)</button>
             <button v-if="switchStore.isGroupChat" @click="handelGroupSend()">发送(Enter)</button>
         </div>
     </div>
 
-    <el-dialog v-model="isAdd" title="好友历史聊天记录" width="30%" @close="isAdd = false" :modal="false">
+    <el-dialog v-model="isAdd" title="好友历史聊天记录" :width=tcWidth @close="isAdd = false" :modal="false">
         <el-input v-model="logQueryData" placeholder="搜索"></el-input>
 
         <div class="historyBox">
@@ -52,33 +51,37 @@
                 </div>
             </div> -->
 
-            <div class="_message" v-for="(item,index) in msglogList" :key="index">
-                <div class="imgbox"  v-if="item.senderGuId == chatStore.chatUser.friendGuId && item.receiverGuId == userStore.userinfo.chatUserGuId">
+            <div class="_message" v-for="(item, index) in msglogList" :key="index">
+                <div class="imgbox"
+                    v-if="item.senderGuId == chatStore.chatUser.friendGuId && item.receiverGuId == userStore.userinfo.chatUserGuId">
                     <img :src=chatStore.chatUser.friendImg alt="头像">
                 </div>
-                <div class="imgbox"  v-if="item.senderGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatUser.friendGuId">
+                <div class="imgbox"
+                    v-if="item.senderGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatUser.friendGuId">
                     <img :src=userStore.userinfo.chatUserImg alt="头像">
                 </div>
 
                 <div class="_message_content_box">
-                    <div class="_message_name" v-if="item.senderGuId == chatStore.chatUser.friendGuId && item.receiverGuId == userStore.userinfo.chatUserGuId">
-                            {{chatStore.chatUser.friendNickName}}
+                    <div class="_message_name"
+                        v-if="item.senderGuId == chatStore.chatUser.friendGuId && item.receiverGuId == userStore.userinfo.chatUserGuId">
+                        {{ chatStore.chatUser.friendNickName }}
                     </div>
-                    <div class="_message_name"  v-if="item.senderGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatUser.friendGuId">
-                            {{userStore.userinfo.chatUserNickName}}
+                    <div class="_message_name"
+                        v-if="item.senderGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatUser.friendGuId">
+                        {{ userStore.userinfo.chatUserNickName }}
                     </div>
                     <div class="_message_content" v-html="item.chatLogContent"></div>
                 </div>
 
                 <div class="_message_time">
-                    <div>{{item.chatLogSendTime}}</div>
+                    <div>{{ item.chatLogSendTime }}</div>
                 </div>
             </div>
 
         </div>
     </el-dialog>
 
-    <el-dialog v-model="isGroupHistory" title="群聊历史聊天记录" width="30%" @close="isGroupHistory = false" :modal="false">
+    <el-dialog v-model="isGroupHistory" title="群聊历史聊天记录" :width=tcWidth @close="isGroupHistory = false" :modal="false">
         <el-input v-model="logQueryData" placeholder="搜索"></el-input>
 
         <div class="historyBox">
@@ -88,33 +91,35 @@
                 </div>
             </div> -->
 
-            <div class="_message" v-for="(item,index) in msglogList" :key="index">
-                <div class="imgbox"  v-if="item.sender.chatUserGuId != userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
+            <div class="_message" v-for="(item, index) in msglogList" :key="index">
+                <div class="imgbox"
+                    v-if="item.sender.chatUserGuId != userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
                     <img :src=item.sender.chatUserImg alt="头像">
                 </div>
-                <div class="imgbox"  v-if="item.sender.chatUserGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
+                <div class="imgbox"
+                    v-if="item.sender.chatUserGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
                     <img :src=userStore.userinfo.chatUserImg alt="头像">
                 </div>
 
                 <div class="_message_content_box">
-                    <div class="_message_name" v-if="item.sender.chatUserGuId != userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
-                            {{item.sender.chatUserNickName}}
+                    <div class="_message_name"
+                        v-if="item.sender.chatUserGuId != userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
+                        {{ item.sender.chatUserNickName }}
                     </div>
-                    <div class="_message_name"  v-if="item.sender.chatUserGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
-                            {{userStore.userinfo.chatUserNickName}}
+                    <div class="_message_name"
+                        v-if="item.sender.chatUserGuId == userStore.userinfo.chatUserGuId && item.receiverGuId == chatStore.chatGroup.groupGuId">
+                        {{ userStore.userinfo.chatUserNickName }}
                     </div>
                     <div class="_message_content" v-html="item.chatLogContent"></div>
                 </div>
 
                 <div class="_message_time">
-                    <div>{{item.chatLogSendTime}}</div>
+                    <div>{{ item.chatLogSendTime }}</div>
                 </div>
             </div>
 
         </div>
     </el-dialog>
-
-
 </template>
 
 <script setup>
@@ -154,6 +159,7 @@ const isOnline = ref(false);
 let isMore = ref(false);
 let msglogList = ref([])
 let logQueryData = ref(null)
+let tcWidth = ref()
 
 let getListData = ref({
     pageSize: 20,
@@ -449,6 +455,27 @@ function sortData(a, b) {
     return new Date(a.chatLogSendTime).getTime() - new Date(b.chatLogSendTime).getTime()
 }
 
+createMediaList({
+    1100(ctx) {
+        if(ctx.matches){
+            tcWidth.value = "100%"
+        }
+        else{
+            tcWidth.value = "50%"
+        }
+    },
+})
+
+function createMediaList(opt) {
+        for (let optKey in opt) {
+            let mediaCtx = window !== undefined ? window.matchMedia(`(max-width: ${optKey}px)`) : global.matchMedia(`(max-width: ${optKey}px)`)
+            if (mediaCtx?.matches) {
+                opt[optKey](mediaCtx)
+            }
+            mediaCtx.addListener(opt[optKey])
+        }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -566,6 +593,7 @@ function sortData(a, b) {
 
         ._message_content_box {
             width: 64%;
+
             ._message_name {
                 font-size: 0.3rem;
                 margin-bottom: 4px;

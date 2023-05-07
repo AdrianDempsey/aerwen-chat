@@ -1,5 +1,4 @@
 <template>
-
   <body>
     <div class="container">
       <div>
@@ -37,7 +36,6 @@
       </div>
     </div>
   </body>
-
 </template>
 
 <script setup>
@@ -327,5 +325,13 @@ body {
     clip-path: var(--slice-1);
     transform: translate(0);
   }
+}
+
+@media (max-width:480px) {
+  .login_input {
+    width: 300px !important;
+  }
+
+
 }
 </style>

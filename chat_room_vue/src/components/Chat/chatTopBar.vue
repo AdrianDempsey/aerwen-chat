@@ -1,6 +1,7 @@
 <template>
     <div class="topBar">
         <div class="topBarBox">
+            <div class="topBarBack" @click="handleBack()">返回</div>
             <div class="topBar_name">
                 <div v-if="switchStore.isChat">
                     <span v-if="chatStore.chatUser.friendNote != null">
@@ -33,6 +34,14 @@ const switchStore = useSwitchStore()
 const chatStore = useChatStore()
 
 
+function handleBack() {
+    if(switchStore.isChat){
+        switchStore.isChat = !switchStore.isChat
+    }else{
+        switchStore.isGroupChat = !switchStore.isGroupChat
+    }
+}
+
 </script>
 
 <style scoped>
@@ -51,7 +60,9 @@ const chatStore = useChatStore()
     width: 100%;
     padding: 0 20px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    font-family: 'Bebas Neue', cursive;
 }
 
 .topBar_name {
@@ -59,11 +70,21 @@ const chatStore = useChatStore()
     font-size: 1.5rem;
     color: grey;
     letter-spacing: 2px;
-    font-family: 'Bebas Neue', cursive;
 }
 .topBar_tool img{
     width: 2rem;
     margin: 0 5px;
     cursor: pointer;
+}
+
+.topBarBack{
+    display: none;
+    font-size: 20px;
+}
+
+@media (max-width: 1100px) {
+    .topBarBack {
+        display: block !important;
+    }
 }
 </style>

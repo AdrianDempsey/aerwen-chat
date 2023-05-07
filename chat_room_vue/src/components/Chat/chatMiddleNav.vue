@@ -47,7 +47,7 @@
                             </div>
                         </div>
 
-                        <el-dialog v-model="isAdd" title="填写附言" width="20%">
+                        <el-dialog v-model="isAdd" title="填写附言" :width=tcWidth>
                             <el-input v-model="postscript" placeholder="请输入附言"></el-input>
                             <template #footer>
                                 <span class="dialog-footer">
@@ -61,8 +61,8 @@
                     <!-- 消息 -->
                     <li v-if="isMessage && !isFindFriend">
                         <div v-for="(item, index) in chatStore.chatLogList" :key="index">
-                            <div class="messageBox"  v-if="item.chatUserObject.friendGuId != '0'"
-                                @click="handelChat(item.chatUserObject,item.chatUserObject.friendGuId)">
+                            <div class="messageBox" v-if="item.chatUserObject.friendGuId != '0'"
+                                @click="handelChat(item.chatUserObject, item.chatUserObject.friendGuId)">
                                 <div class="message_img_box messageBoxLeft">
                                     <div class="point" v-if="item.isRead == false"></div>
                                     <img class="message_img" :src=item.chatUserObject.friendImg alt="">
@@ -71,70 +71,69 @@
                                     <div class="message_info">
                                         <div v-if="item.chatUserObject.friendNote != null">
                                             {{
-                                            item.chatUserObject.friendNote.length >= 20
-                                            ? item.chatUserObject.friendNote.substr(0, 20) + "..."
-                                            : item.chatUserObject.friendNote}}</div>
+                                                item.chatUserObject.friendNote.length >= 20
+                                                ? item.chatUserObject.friendNote.substr(0, 20) + "..."
+                                                : item.chatUserObject.friendNote }}</div>
                                         <div v-else>
                                             {{
-                                            item.chatUserObject.friendNickName.length >= 20
-                                            ? item.chatUserObject.friendNickName.substr(0, 20) + "..."
-                                            : item.chatUserObject.friendNickName}}
+                                                item.chatUserObject.friendNickName.length >= 20
+                                                ? item.chatUserObject.friendNickName.substr(0, 20) + "..."
+                                                : item.chatUserObject.friendNickName }}
                                         </div>
                                     </div>
                                     <div class="message_end">
                                         <div style="font-size: 12px;color: #79a39f;">
-                                        {{
-                                        item.chatLogContent.length && ((tag,len)=>{
-                                            let imgReg = /\<img/g,
-                                                brReg = /\<br\>/g,
-                                                spaceReg = /nbsp;/g
-                                                imgMatch = tag.match(imgReg),
-                                                brMatch = tag.match(brReg),
-                                                spaceMatch = tag.match(spaceReg),
-                                                rtxSwitch = (tag)=>{
-                                                    let rtx = tag,
-                                                        match1 = [{m:rtx.match(/lt;/g),r:'<'},{m:rtx.match(/gt;/g),r:'>'}],
-                                                        match2 = rtx.match(/nbsp;/g)
-                                                        match3 = rtx.match(/<img/g)
-                                                        match4 = rtx.match(/\<br\>/g)
-                                                        // rtx = rtx.replace(/lt;/g, '')
-                                                        // rtx = rtx.replace(/gt;/g, '')
-                                                        // rtx = rtx.replace(/quot;/g, "'")
-                                                        // rtx = rtx.replace(/ldquo;/g, "")
-                                                        // rtx = rtx.replace(/amp;/g, "")
-                                                        // rtx = rtx.replace(/rdquo;/g, "")
-                                                        // rtx = rtx.replace(/nbsp;/g, "");
-                                                        // consolea.log(match[1])
-                                                        if(match3){
-                                                            return '[图片]'
-                                                        }
-                                                        match1.map(item=>{
-                                                            if(item.m){
-                                                                rtx = rtx.replaceAll('&'+item.m[0],item.r)
-                                                                // len+='&'+item[0]
+                                            {{
+                                                item.chatLogContent.length && ((tag, len) => {
+                                                    let imgReg = /\<img /g, brReg = /\<br\>/g,
+                                                        spaceReg = /nbsp;/g
+                                                    imgMatch = tag.match(imgReg),
+                                                        brMatch = tag.match(brReg),
+                                                        spaceMatch = tag.match(spaceReg),
+                                                        rtxSwitch = (tag) => {
+                                                            let rtx = tag,
+                                                                match1 = [{ m: rtx.match(/lt;/g), r: '<' }, { m: rtx.match(/gt;/g), r: '>' }],
+                                                                match2 = rtx.match(/nbsp;/g)
+                                                                match3 = rtx.match(/<img /g) 
+                                                                match4 = rtx.match(/\<br\>/g)
+                                                            // rtx = rtx.replace(/lt;/g, '')
+                                                            // rtx = rtx.replace(/gt;/g, '')
+                                                            // rtx = rtx.replace(/quot;/g, "'")
+                                                            // rtx = rtx.replace(/ldquo;/g, "")
+                                                            // rtx = rtx.replace(/amp;/g, "")
+                                                            // rtx = rtx.replace(/rdquo;/g, "")
+                                                            // rtx = rtx.replace(/nbsp;/g, "");
+                                                            // consolea.log(match[1])
+                                                            if (match3) {
+                                                                return '[图片]'
                                                             }
-                                                        })
-                                                        match2 && (()=>{
-                                                            rtx = rtx.replaceAll('&'+match2[0],'')
-                                                            // len += match2[0].split(',') + match2.length                                                   
-                                                        })()
-                                                        match4 && (()=>{
-                                                            rtx = rtx.replaceAll(match4[0],'')
-                                                            // len += match4[0].split(',')                                              
-                                                        })()
-                                                    return rtx
-                                                }
-                                                res = rtxSwitch(String(tag))
-                                                if(len > 7){
-                                                    res = res.substr(0,7) + '...'
-                                                }else{
-                                                    res = res
-                                                }
-                                            return res
-                                        })(item.chatLogContent,item.chatLogContent.length)                                       
-                                        }}
+                                                            match1.map(item => {
+                                                                if (item.m) {
+                                                                    rtx = rtx.replaceAll('&' + item.m[0], item.r)
+                                                                    // len+='&'+item[0]
+                                                                }
+                                                            })
+                                                            match2 && (() => {
+                                                                rtx = rtx.replaceAll('&' + match2[0], '')
+                                                                // len += match2[0].split(',') + match2.length
+                                                            })()
+                                                            match4 && (() => {
+                                                                rtx = rtx.replaceAll(match4[0], '')
+                                                                // len += match4[0].split(',')
+                                                            })()
+                                                            return rtx
+                                                        }
+                                                    res = rtxSwitch(String(tag))
+                                                    if (len > 7) {
+                                                        res = res.substr(0, 7) + '...'
+                                                    } else {
+                                                        res = res
+                                                    }
+                                                    return res
+                                                })(item.chatLogContent, item.chatLogContent.length)
+                                            }}
                                         </div>
-                                        <div style="color: #79a39f;font-size: 10px;">{{item.chatLogSendTime}}</div>
+                                        <div style="color: #79a39f;font-size: 10px;">{{ item.chatLogSendTime }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -142,8 +141,9 @@
 
                         <!-- 群聊最新消息 -->
                         <div v-for="(item, index) in chatStore.chatLogList" :key="index">
-                            
-                            <div class="messageBox" v-if="item.chatUserObject.friendGuId == '0'" @click="handelGroupChat(item.groupObject)">
+
+                            <div class="messageBox" v-if="item.chatUserObject.friendGuId == '0'"
+                                @click="handelGroupChat(item.groupObject)">
                                 <div class="message_img_box messageBoxLeft">
                                     <div class="point" v-if="item.groupObject.groupIsRead == false"></div>
                                     <img class="message_img" :src=item.groupObject.groupImg alt="">
@@ -152,64 +152,63 @@
                                     <div class="message_info">
                                         <div v-if="item.groupObject.groupName != null">
                                             {{
-                                            item.groupObject.groupName.length >= 20
-                                            ? item.groupObject.groupName.substr(0, 20) + "..."
-                                            : item.groupObject.groupName}}</div>
+                                                item.groupObject.groupName.length >= 20
+                                                ? item.groupObject.groupName.substr(0, 20) + "..."
+                                                : item.groupObject.groupName }}</div>
                                     </div>
                                     <div class="message_end">
                                         <div style="font-size: 12px;color: #79a39f;">
                                             {{
-                                        item.chatLogContent.length && ((tag,len)=>{
-                                            let imgReg = /\<img/g,
-                                                brReg = /\<br\>/g,
-                                                spaceReg = /nbsp;/g
-                                                imgMatch = tag.match(imgReg),
-                                                brMatch = tag.match(brReg),
-                                                spaceMatch = tag.match(spaceReg),
-                                                rtxSwitch = (tag)=>{
-                                                    let rtx = tag,
-                                                        match1 = [{m:rtx.match(/lt;/g),r:'<'},{m:rtx.match(/gt;/g),r:'>'}],
-                                                        match2 = rtx.match(/nbsp;/g)
-                                                        match3 = rtx.match(/<img/g)
-                                                        match4 = rtx.match(/\<br\>/g)
-                                                        // rtx = rtx.replace(/lt;/g, '')
-                                                        // rtx = rtx.replace(/gt;/g, '')
-                                                        // rtx = rtx.replace(/quot;/g, "'")
-                                                        // rtx = rtx.replace(/ldquo;/g, "")
-                                                        // rtx = rtx.replace(/amp;/g, "")
-                                                        // rtx = rtx.replace(/rdquo;/g, "")
-                                                        // rtx = rtx.replace(/nbsp;/g, "");
-                                                        // consolea.log(match[1])
-                                                        if(match3){
-                                                            return '[图片]'
-                                                        }
-                                                        match1.map(item=>{
-                                                            if(item.m){
-                                                                rtx = rtx.replaceAll('&'+item.m[0],item.r)
-                                                                // len+='&'+item[0]
+                                                item.chatLogContent.length && ((tag, len) => {
+                                                    let imgReg = /\<img /g, brReg = /\<br\>/g,
+                                                        spaceReg = /nbsp;/g
+                                                    imgMatch = tag.match(imgReg),
+                                                        brMatch = tag.match(brReg),
+                                                        spaceMatch = tag.match(spaceReg),
+                                                        rtxSwitch = (tag) => {
+                                                            let rtx = tag,
+                                                                match1 = [{ m: rtx.match(/lt;/g), r: '<' }, { m: rtx.match(/gt;/g), r: '>' }],
+                                                                match2 = rtx.match(/nbsp;/g)
+                                                                match3 = rtx.match(/<img /g)
+                                                                match4 = rtx.match(/\<br\>/g)
+                                                            // rtx = rtx.replace(/lt;/g, '')
+                                                            // rtx = rtx.replace(/gt;/g, '')
+                                                            // rtx = rtx.replace(/quot;/g, "'")
+                                                            // rtx = rtx.replace(/ldquo;/g, "")
+                                                            // rtx = rtx.replace(/amp;/g, "")
+                                                            // rtx = rtx.replace(/rdquo;/g, "")
+                                                            // rtx = rtx.replace(/nbsp;/g, "");
+                                                            // consolea.log(match[1])
+                                                            if (match3) {
+                                                                return '[图片]'
                                                             }
-                                                        })
-                                                        match2 && (()=>{
-                                                            rtx = rtx.replaceAll('&'+match2[0],'')
-                                                            // len += match2[0].split(',') + match2.length                                                   
-                                                        })()
-                                                        match4 && (()=>{
-                                                            rtx = rtx.replaceAll(match4[0],'')
-                                                            // len += match4[0].split(',')                                              
-                                                        })()
-                                                    return rtx
-                                                }
-                                                res = rtxSwitch(String(tag))
-                                                if(len > 7){
-                                                    res = res.substr(0,7) + '...'
-                                                }else{
-                                                    res = res
-                                                }
-                                            return res
-                                        })(item.chatLogContent,item.chatLogContent.length)                                       
-                                        }}
+                                                            match1.map(item => {
+                                                                if (item.m) {
+                                                                    rtx = rtx.replaceAll('&' + item.m[0], item.r)
+                                                                    // len+='&'+item[0]
+                                                                }
+                                                            })
+                                                            match2 && (() => {
+                                                                rtx = rtx.replaceAll('&' + match2[0], '')
+                                                                // len += match2[0].split(',') + match2.length
+                                                            })()
+                                                            match4 && (() => {
+                                                                rtx = rtx.replaceAll(match4[0], '')
+                                                                // len += match4[0].split(',')
+                                                            })()
+                                                            return rtx
+                                                        }
+                                                    res = rtxSwitch(String(tag))
+                                                    if (len > 7) {
+                                                        res = res.substr(0, 7) + '...'
+                                                    } else {
+                                                        res = res
+                                                    }
+                                                    return res
+                                                })(item.chatLogContent, item.chatLogContent.length)
+                                            }}
                                         </div>
-                                        <div style="color: #79a39f;font-size: 10px;">{{item.chatLogSendTime}}</div>
+                                        <div style="color: #79a39f;font-size: 10px;">{{ item.chatLogSendTime }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -227,11 +226,15 @@
 
                     <!-- 好友 -->
                     <li v-if="isFriends && !isFindFriend">
+                        <div class="newFriendBox" @click="switchStore.isFriends = !switchStore.isFriends">
+                            <div>新朋友</div>
+                            <div class="newFriendIcon">></div>
+                        </div>
                         <div class="messageBox" v-for="(item, index) in FriendsDataList" :key="index">
                             <div class="message_img_box messageBoxLeft" @click="showFriendIntro(item)">
                                 <img class="message_img" :src=item.friendImg alt="">
                             </div>
-                            <div class="messageBoxRight" @click="handelChat(item,item.friendGuId)">
+                            <div class="messageBoxRight" @click="handelChat(item, item.friendGuId)">
                                 <div class="message_info">
                                     <div v-if="item.friendNote != null">{{ item.friendNote }}</div>
                                     <div v-else>{{ item.friendNickName }}</div>
@@ -274,7 +277,7 @@
                         </div>
                     </li>
 
-                    <el-dialog v-model="isAddGroup" title="添加群聊" width="20%">
+                    <el-dialog v-model="isAddGroup" title="添加群聊" :width=tcWidth>
                         <el-row>
                             <el-col style="display: flex;justify-content: center;margin: 15px 0 30px 0;">
                                 <UploadImage ref="uploadRef" v-model="addGroupData.GroupImg" :limit="1" :fileSize="5"
@@ -306,7 +309,7 @@ import { ref, reactive, watch } from 'vue';
 import { findFriends, friendsList } from '../../api/friends/friend'
 import { sendApply } from '../../api/friends/apply'
 import { createGroup, groupList } from '../../api/group/group'
-import { getChatLogList, read , groupRead} from '../../api/chatLog/chatLog'
+import { getChatLogList, read, groupRead } from '../../api/chatLog/chatLog'
 import moadl from '../../plugins/modal'
 import useUserStore from '../../store/modules/user'
 import { ElMessage, ElMessageBox, ElNotification, ElLoading } from 'element-plus'
@@ -341,6 +344,7 @@ let username = ref();
 let userImg = ref();
 let groupNum = ref();
 let selfconnectionID = reactive()
+let tcWidth = ref()
 
 const chatLogList = ref([]);
 
@@ -564,6 +568,26 @@ async function handelGroupChat(v) {
     // console.log(v.groupName);
 }
 
+createMediaList({
+    1100(ctx) {
+        if(ctx.matches){
+            tcWidth.value = "100%"
+        }
+        else{
+            tcWidth.value = "50%"
+        }
+    },
+})
+
+function createMediaList(opt) {
+        for (let optKey in opt) {
+            let mediaCtx = window !== undefined ? window.matchMedia(`(max-width: ${optKey}px)`) : global.matchMedia(`(max-width: ${optKey}px)`)
+            if (mediaCtx?.matches) {
+                opt[optKey](mediaCtx)
+            }
+            mediaCtx.addListener(opt[optKey])
+        }
+}
 
 </script>
 
@@ -845,6 +869,21 @@ async function handelGroupChat(v) {
     animation: ani 1s;
 }
 
+.newFriendBox{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    position: relative;
+}
+.newFriendIcon{
+    position: absolute;
+    right: 15%;
+}
+
 @keyframes ani {
     0% {
         transform: translateX(600px);
@@ -852,6 +891,14 @@ async function handelGroupChat(v) {
 
     100% {
         transform: translateX(0px);
+    }
+}
+
+@media (max-width: 1100px) {
+    .middlebox {
+        width: 100% !important;
+        padding: 0 !important;
+        margin-top: 20px;
     }
 }
 </style>
